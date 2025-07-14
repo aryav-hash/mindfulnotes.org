@@ -3,39 +3,44 @@ import logo from "../assets/logo.png"
 function Home() {
     const cardData = [
         {
+            image: '/images/mindfulness.jpg',
+            title: 'Mindfulness',
+            desc: 'Mindfulness is the practice of being fully present in the current moment, with awareness and without judgment.',
+        },
+        {
             image: '/images/meditation.jpg',
-            title: 'Meditation helps our body and mind',
-            desc: `Meditation is a gentle practice that brings your focus inward, helping you relax, reduce stress, and find balance. It is a powerful tool for both physical well-being and mental clarity, offering numerous benefits to your health.
-                    Start with just a few minutes: Begin with 5 to 10 minutes of meditation each day and gradually increase the time as you feel comfortable.
-                    Find a quiet space: Choose a peaceful, quiet space where you can sit comfortably without distractions.
-                    Focus on your breath: Close your eyes and pay attention to your breathing—inhale slowly and deeply, then exhale gently. Let your thoughts come and go without getting attached to them.
-                    Use guided meditations: If you are new to meditation, try using apps or videos with guided sessions to help you get started.
-                    Practice regularly: Meditation is most effective when practiced regularly, so try to set aside time each day to meditate`,
+            title: 'Meditation',
+            desc: 'Meditation is a formal practice where you intentionally focus your attention, often as a way to train the mind.',
+        },
+        {
+            image: '/images/productivity.jpg',
+            title: 'Focus and Productivity',
+            desc: `Focus and productivity are key aspects of mental and physical well-being, especially if you're managing work, study, or personal goals.`,
         },
         {
             image: '/images/sleep.jpg',
             title: 'Sleep helps our body and mind',
-            desc: 'Sleep supports mental clarity, physical recovery, and emotional balance.',
-        },
-        {
-            image: '/images/productivity.jpg',
-            title: 'Daily productivity improves well-being',
-            desc: 'Accomplishing daily goals gives us purpose and control.',
-        },
-        {
-            image: '/images/stress.jpg',
-            title: 'Reducing stress helps mental health',
-            desc: 'Lowering stress helps us feel more at ease and mentally clear.',
-        },
-        {
-            image: '/images/hydration.jpg',
-            title: 'Staying hydrated helps body and mind',
-            desc: 'Water is vital for energy, focus, skin, and overall mental well-being.',
+            desc: `Sleep is one of the most fundamental pillars of physical and mental well-being. It's not just about getting enough rest—sleep quality, consistency, and timing directly affect your energy, mood, focus, immunity, and even long-term health.`,
         },
         {
             image: '/images/eating.jpg',
-            title: 'Mindful eating improves well-being',
-            desc: 'Paying attention to what and how you eat can improve your health.',
+            title: 'Mindful Eats',
+            desc: `Mindful eating is the practice of fully engaging your senses and awareness while eating, without judgment or distraction.`,
+        },
+        {
+            image: '/images/stress.jpg',
+            title: 'Stress',
+            desc: 'Stress is your body’s natural response to demands or threats, whether physical, emotional, or psychological. It’s not always negative—some stress is healthy (called eustress) and helps with motivation and focus.',
+        },
+        {
+            image: '/images/screen.jpg',
+            title: 'Screen time and digital overload',
+            desc: "In today’s hyperconnected world, screen time and digital overload have become major factors influencing our mental, physical, and emotional well-being. While technology offers convenience and connection, excessive use can disrupt nearly every area of health.",
+        },
+        {
+            image: '/images/anger.jpg',
+            title: 'Anger and well-being',
+            desc: 'Anger is a normal human emotion, but when it becomes frequent, intense, or uncontrolled, it can negatively affect your mental, emotional, and physical well-being.',
         }
     ]
     
@@ -45,7 +50,7 @@ function Home() {
             {/* Navbar */}
             <header className="bg-white shadow-md py-2 ">
                 <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-                <h2 className="text-xl md:text-2xl font-bold text-blue-700">MINDFUL NOTES</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-blue-700">MINDFULNOTES</h2>
                 <nav className="space-x-6 hidden md:flex">
                     <></>
                 </nav>
@@ -59,7 +64,7 @@ function Home() {
             <section className="flex flex-col justify-around items-center text-center py-16 bg-red-50">
                 <img src={logo} alt="Mindful Notes logo" className="h-20 w-auto" />
                 <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
-                Mindful Notes is a web application that records our well-being and various parameters and provides personalized insights. It generates a personalized well-being indicator day-to-day, helping you better your mental and physical well-being.
+                Welcome to Mindfulnotes, the well-being tracker that anyone can use.
                 </p>
                 <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
                 Login
