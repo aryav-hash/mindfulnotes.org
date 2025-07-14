@@ -19,7 +19,7 @@ function Home() {
         },
         {
             image: '/images/sleep.jpg',
-            title: 'Sleep helps our body and mind',
+            title: 'Sleep',
             desc: `Sleep is one of the most fundamental pillars of physical and mental well-being. It's not just about getting enough rest—sleep quality, consistency, and timing directly affect your energy, mood, focus, immunity, and even long-term health.`,
         },
         {
