@@ -50,7 +50,7 @@ function Home() {
             {/* Navbar */}
             <header className="bg-white shadow-md py-2 ">
                 <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-                <h2 className="text-xl md:text-2xl font-bold text-blue-700">MINDFULNOTES</h2>
+                <h3 className="text-xl md:text-2xl font-bold text-blue-500">MINDFULNOTES</h3>
                 <nav className="space-x-6 hidden md:flex">
                     <></>
                 </nav>
@@ -94,6 +94,41 @@ function Home() {
                 </div>
                 ))}
             </div>
+            </section>
+
+            <section className="flex flex-col justify-around items-center text-center py-16 bg-green-50">
+                <h4 className="text-xl md:text-2xl font-bold text-blue-500">What we offer</h4>
+                <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
+                    Our well-being tracker combines smart technology with proven wellness techniques to help you feel better, every day. By tracking physical health, mental clarity, sleep, stress, screen time, and more, we give you a full picture of your well-being. With easy tools, gentle reminders, and personalized insights, the app helps you build healthier habits and notice what works for you.
+                </p>
+            </section>
+
+            <section className="flex flex-col justify-around items-center text-center py-16 bg-yellow-50">
+                <h4 className="text-xl md:text-2xl font-bold text-blue-500">Who we serve</h4>
+                <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
+                    Our well-being tracker is built for individuals and organizations alike—designed to support anyone looking to live and work with greater balance, awareness, and health. We serve students, professionals, parents, and retirees who want to track and improve their daily wellness. We also partner with businesses, employers, wellness coaches, gyms, clinics, schools, and mental health professionals who are committed to creating healthier environments for their people.
+                </p>
+            </section>
+
+            <section className="flex flex-col justify-around items-center text-center py-16 bg-red-50">
+                <h4 className="text-xl md:text-2xl font-bold text-blue-500">About us</h4>
+                <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
+                    We are a team dedicated to helping people live healthier, more balanced lives—one day at a time. Our well-being tracker is designed to make daily self-care simple and meaningful, blending science-backed practices with easy-to-use tools. Whether you're tracking your mood, managing stress, or building new habits, we're here to support your journey with clarity, compassion, and purpose.
+                </p>
+            </section>
+
+            <section className="flex flex-col justify-around items-center text-center py-16 bg-green-50">
+                <h4 className="text-xl md:text-2xl font-bold text-blue-500">Support Our Mission</h4>
+                <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
+                    If our work resonates with you, we invite you to support our mission to make well-being accessible for all. Your contribution—big or small—helps us continue building tools that empower individuals, support communities, and promote healthier lifestyles across all walks of life. With your help, we can reach more people, enhance our features, and create lasting impact.
+                </p>
+            </section>
+
+            <section className="flex flex-col justify-around items-center text-center py-16 bg-yellow-50">
+                <h4 className="text-xl md:text-2xl font-bold text-blue-500">Contact us</h4>
+                <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
+                    We’d love to hear from you! Whether you have a question, feedback, partnership inquiry, or just want to say hello—our team is here to help. Reach out to us anytime at mindnotes6@gmail.com 
+                </p>
             </section>
 
             {/* Footer */}
