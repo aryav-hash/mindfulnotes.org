@@ -41,16 +41,44 @@ function Home() {
             image: '/images/anger.jpg',
             title: 'Anger and well-being',
             desc: 'Anger is a normal human emotion, but when it becomes frequent, intense, or uncontrolled, it can negatively affect your mental, emotional, and physical well-being.',
+        },
+        {
+            image: '/images/minimalism.jpg',
+            title: 'Minimalism',
+            desc: 'Minimalism and well-being are deeply connected, often in ways people don’t immediately realize. On the surface, minimalism is about reducing physical clutter and living with less, but it goes beyond just owning fewer things. It’s a lifestyle that emphasizes focus, intentionality, and cultivating a life that is more meaningful and less overwhelmed by distractions.'
         }
     ]
     
+    const menuData = [
+        {
+            title: "What we offer",
+            desc: "Our well-being tracker combines smart technology with proven wellness techniques to help you feel better, every day. By tracking physical health, mental clarity, sleep, stress, screen time, and more, we give you a full picture of your well-being. With easy tools, gentle reminders, and personalized insights, the app helps you build healthier habits and notice what works for you."
+        },
+        {
+            title: "Who we serve",
+            desc: "Our well-being tracker is built for individuals and organizations alike—designed to support anyone looking to live and work with greater balance, awareness, and health. We serve students, professionals, parents, and retirees who want to track and improve their daily wellness. We also partner with businesses, employers, wellness coaches, gyms, clinics, schools, and mental health professionals who are committed to creating healthier environments for their people."
+        },
+        {
+            title: "About us",
+            desc: "We are a team dedicated to helping people live healthier, more balanced lives—one day at a time. Our well-being tracker is designed to make daily self-care simple and meaningful, blending science-backed practices with easy-to-use tools. Whether you're tracking your mood, managing stress, or building new habits, we're here to support your journey with clarity, compassion, and purpose."
+        },
+        /*{
+            title: "Support our mission",
+            desc: "If our work resonates with you, we invite you to support our mission to make well-being accessible for all. Your contribution—big or small—helps us continue building tools that empower individuals, support communities, and promote healthier lifestyles across all walks of life. With your help, we can reach more people, enhance our features, and create lasting impact."
+        },*/
+        {
+            title: "Contact us",
+            desc: "We’d love to hear from you! Whether you have a question, feedback, partnership inquiry, or just want to say hello—our team is here to help. Reach out to us anytime at mindnotes6@gmail.com"
+        }
+    ]
+
     return (
         <>
-            <div className="font-sans text-gray-800">
+            <div className="font-sans text-gray-800 relative">
             {/* Navbar */}
-            <header className="bg-white shadow-md py-2 ">
+            <header className="fixed bg-white py-2 w-full">
                 <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-                <h3 className="text-xl md:text-2xl font-bold text-blue-500">MINDFULNOTES</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-blue-400">MINDFULNOTES</h3>
                 <nav className="space-x-6 hidden md:flex">
                     <></>
                 </nav>
@@ -61,7 +89,7 @@ function Home() {
             </header>
 
             {/* Hero Section */}
-            <section className="flex flex-col justify-around items-center text-center py-16 bg-red-50">
+            <center><section className="flex flex-col justify-around items-center text-center py-16 max-w-6xl bg-red-50">
                 <img src={logo} alt="Mindful Notes logo" className="h-20 w-auto" />
                 <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
                 Welcome to Mindfulnotes, the well-being tracker that anyone can use.
@@ -69,7 +97,7 @@ function Home() {
                 <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
                 Login
                 </button>
-            </section>
+            </section></center>
 
             {/* Info Cards Grid */}
             <section className="py-16 px-6 bg-white">
@@ -79,7 +107,7 @@ function Home() {
                     key={index}
                     className="bg-gray-100 rounded-lg overflow-hidden shadow hover:shadow-lg transition"
                 >
-                    <img
+                     <img
                     src={item.image}
                     alt={item.title}
                     className="h-40 w-full object-cover"
@@ -87,49 +115,29 @@ function Home() {
                     <div className="p-6">
                     <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                     <p className="text-gray-700 text-sm mb-4">{item.desc}</p>
-                    <button className="text-blue-600 font-medium hover:underline">
-                        View More
-                    </button>
+                    </div>
+                </div>
+                ))}
+            </div>
+            </section>
+            
+            <section className="pb-16 px-6 bg-white">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-8">
+                {menuData.map((item, index) => (
+                <div
+                    key={index}
+                    className="bg-gray-100 rounded-lg overflow-hidden shadow hover:shadow-lg transition"
+                >
+                    <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                    <p className="text-gray-700 text-sm mb-4">{item.desc}</p>
                     </div>
                 </div>
                 ))}
             </div>
             </section>
 
-            <section className="flex flex-col justify-around items-center text-center py-16 bg-green-50">
-                <h4 className="text-xl md:text-2xl font-bold text-blue-500">What we offer</h4>
-                <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
-                    Our well-being tracker combines smart technology with proven wellness techniques to help you feel better, every day. By tracking physical health, mental clarity, sleep, stress, screen time, and more, we give you a full picture of your well-being. With easy tools, gentle reminders, and personalized insights, the app helps you build healthier habits and notice what works for you.
-                </p>
-            </section>
-
-            <section className="flex flex-col justify-around items-center text-center py-16 bg-yellow-50">
-                <h4 className="text-xl md:text-2xl font-bold text-blue-500">Who we serve</h4>
-                <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
-                    Our well-being tracker is built for individuals and organizations alike—designed to support anyone looking to live and work with greater balance, awareness, and health. We serve students, professionals, parents, and retirees who want to track and improve their daily wellness. We also partner with businesses, employers, wellness coaches, gyms, clinics, schools, and mental health professionals who are committed to creating healthier environments for their people.
-                </p>
-            </section>
-
-            <section className="flex flex-col justify-around items-center text-center py-16 bg-red-50">
-                <h4 className="text-xl md:text-2xl font-bold text-blue-500">About us</h4>
-                <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
-                    We are a team dedicated to helping people live healthier, more balanced lives—one day at a time. Our well-being tracker is designed to make daily self-care simple and meaningful, blending science-backed practices with easy-to-use tools. Whether you're tracking your mood, managing stress, or building new habits, we're here to support your journey with clarity, compassion, and purpose.
-                </p>
-            </section>
-
-            <section className="flex flex-col justify-around items-center text-center py-16 bg-green-50">
-                <h4 className="text-xl md:text-2xl font-bold text-blue-500">Support Our Mission</h4>
-                <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
-                    If our work resonates with you, we invite you to support our mission to make well-being accessible for all. Your contribution—big or small—helps us continue building tools that empower individuals, support communities, and promote healthier lifestyles across all walks of life. With your help, we can reach more people, enhance our features, and create lasting impact.
-                </p>
-            </section>
-
-            <section className="flex flex-col justify-around items-center text-center py-16 bg-yellow-50">
-                <h4 className="text-xl md:text-2xl font-bold text-blue-500">Contact us</h4>
-                <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
-                    We’d love to hear from you! Whether you have a question, feedback, partnership inquiry, or just want to say hello—our team is here to help. Reach out to us anytime at mindnotes6@gmail.com 
-                </p>
-            </section>
+           
 
             {/* Footer */}
             <footer className="bg-gray-800 text-white text-center py-6">
