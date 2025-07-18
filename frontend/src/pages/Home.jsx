@@ -89,7 +89,7 @@ function Home() {
             </header>
 
             {/* Hero Section */}
-            <center><section className="flex flex-col justify-around items-center text-center py-16 max-w-6xl bg-red-50">
+            <center><section className="flex flex-col justify-around items-center text-center py-16 max-w-6xl bg-yellow-50">
                 <img src={logo} alt="Mindful Notes logo" className="h-20 w-auto" />
                 <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
                 Welcome to Mindfulnotes, the well-being tracker that anyone can use.
