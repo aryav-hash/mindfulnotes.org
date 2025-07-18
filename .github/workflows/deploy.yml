@@ -26,7 +26,11 @@ jobs:
 
             git pull origin main  
 
+            cd frontend
+            npm install
+            npm run build
+
             # Optional: Restart the web server if needed (depends on setup)
-            # sudo systemctl restart apache2
+            sudo systemctl restart apache2
             # sudo systemctl restart nginx
           EOF
