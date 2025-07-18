@@ -78,7 +78,7 @@ function Home() {
             {/* Navbar */}
             <header className="fixed bg-white py-2 w-full">
                 <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-                <h3 className="text-xl md:text-2xl font-bold text-green-600">MINDFULNOTES</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-orange-600">MINDFULNOTES</h3>
                 <nav className="space-x-6 hidden md:flex">
                     <></>
                 </nav>
