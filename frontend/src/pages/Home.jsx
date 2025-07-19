@@ -1,4 +1,6 @@
 import logo from "../assets/logo.png"
+import { Link } from 'react-router-dom'
+
 
 function Home() {
     const cardData = [
@@ -25,7 +27,8 @@ function Home() {
         {
             image: '/images/eating.jpg',
             title: 'Mindful Eats',
-            desc: `Mindful eating is the practice of fully engaging your senses and awareness while eating, without judgment or distraction.`,
+            desc: `Mindful eating is the practice of fully engaging your senses and awareness while eating, without judgment or distraction. We help you check and compare the nutrition in what you eat — `,
+            link: `NutrientChecker`
         },
         {
             image: '/images/stress.jpg',
@@ -78,7 +81,7 @@ function Home() {
             {/* Navbar */}
             <header className="fixed bg-white py-2 w-full">
                 <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-                <h3 className="text-xl md:text-2xl font-bold text-green-600">MINDFULNOTES</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-green-600">Mindfulnotes</h3>
                 <nav className="space-x-6 hidden md:flex">
                     <></>
                 </nav>
@@ -114,7 +117,7 @@ function Home() {
                     />
                     <div className="p-6">
                     <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                    <p className="text-gray-700 text-sm mb-4">{item.desc}</p>
+                    <p className="text-gray-700 text-sm mb-4">{item.desc}<Link to="/nutrientChecker" className="text-blue-500">{item.link}</Link></p>
                     </div>
                 </div>
                 ))}
