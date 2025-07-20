@@ -1,6 +1,10 @@
 import logo from "../assets/logo.png"
 import Papa from 'papaparse'
 import { useEffect, useState } from 'react'
+import {Chart as ChartJS,BarElement,CategoryScale,LinearScale,Tooltip,Legend,} from "chart.js";
+import {Bar} from 'react-chartjs-2';
+
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
 function NutrientChecker() {
     const [options, setOptions] = useState([])
@@ -65,24 +69,69 @@ function NutrientChecker() {
                     </li>
                     ))}
                 </ul>
+
                 {selected && (
-                    <div className="mt-4 bg-gray-100 p-4 rounded">
-                    <h3 className="text-lg font-semibold text-green-700 mb-2">
-                        Selected: {selected.food_name}
-                    </h3>
-                    <ul className="text-gray-800 text-sm space-y-1">
-                        {Object.entries(selected).map(([key, value]) => (
-                        <li key={key}>
-                            <strong>{key}:</strong> {value}
-                        </li>
-                        ))}
-                    </ul>
-                    </div>
-                )}
+                    <>
+                        <div className="mt-4 bg-gray-100 p-4 rounded">
+                        <h3 className="text-lg font-semibold text-green-700 mb-2">
+                            Selected: {selected.food_name}
+                        </h3>
+                        <ul className="text-gray-800 text-sm space-y-1">
+                            {Object.entries(selected).map(([key, value]) => (
+                            <li key={key}>
+                                <strong>{key}:</strong> {value}
+                            </li>
+                            ))}
+                        </ul>
+                        </div>
+
+                        <div className="mt-6">
+                        <h4 className="text-md font-semibold mb-2">Nutrient Chart</h4>
+                        <Bar
+                            data={{
+                            labels: Object.keys(selected).filter((key) =>
+                                ['energy_kcal','carb_g','protein_g','fat_g','freesugar_g','fibre_g'].includes(key.toLowerCase())
+                            ),
+                            datasets: [
+                                {
+                                label: `${selected.food_name} (per 100g)`,
+                                backgroundColor: [
+                                    '#4285F4',
+                                    '#34A853',
+                                    '#FBBC04',
+                                    '#EA4335',
+                                    '#E37400',
+                                    '#202124',
+                                ],
+                                data: Object.entries(selected)
+                                    .filter(([key]) =>
+                                    ['energy_kcal','carb_g','protein_g','fat_g','freesugar_g','fibre_g'].includes(key.toLowerCase())
+                                    )
+                                    .map(([, value]) => parseFloat(value)),
+                                },
+                            ],
+                            }}
+                            options={{
+                            responsive: true,
+                            scales: {
+                                y: {
+                                beginAtZero: true,
+                                },
+                            },
+                            }}
+                        />
+                        </div>
+                    </>
+                    )}
+
+            </div>
+            
+            <div className="flex justify-center">
+                <p className="mb-1 text-sm px-5 py-5 w-6xl text-center"><span className="font-bold">Disclaimer: </span><i>The data displayed above is indicative in nature, with values presented per 100g. The recipes may vary based on individual preferences and availability of ingredients. The data is referenced from Indian Nutrient Databank (INDB).</i></p>
             </div>
 
             <footer className="bg-gray-800 text-white text-center py-6">
-                <p className="mb-1 text-sm">Nutrients for common recipes, with values presented per 100g. The data is referenced from Indian Nutrient Databank (INDB).</p>
+                <p className="mb-1 text-sm"></p>
                 <p className="text-sm">www.mindfulnotes.org | mindnotes6@gmail.com</p>
             </footer>
 
