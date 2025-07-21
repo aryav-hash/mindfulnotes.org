@@ -22,11 +22,16 @@ function NutrientChecker() {
         })
     }, [])
 
-    const filtered = (options || []).filter(
+    const filtered = (options).filter(
     (item) =>
         item.food_name &&
         item.food_name.toLowerCase().includes(search.toLowerCase())
     )
+
+    const handleSelect = (item) => {
+        setSelected(item);
+        setSearch(''); // 👈 this hides the dropdown
+    };
 
     return (
         <>
@@ -58,17 +63,19 @@ function NutrientChecker() {
                     onChange={(e) => setSearch(e.target.value)}
                     className="w-full px-4 py-2 border rounded shadow"
                 />
-                <ul className="border rounded shadow mt-2 max-h-48 overflow-y-auto">
-                    {filtered.map((item, index) => (
-                    <li
-                        key={index}
-                        onClick={() => setSelected(item)}
-                        className="px-4 py-2 hover:bg-blue-100 cursor-pointer"
-                    >
-                        {item.food_name}
-                    </li>
-                    ))}
-                </ul>
+                {search && filtered.length > 0 && (
+                    <ul className="border rounded shadow mt-2 max-h-48 overflow-y-auto">
+                        {filtered.map((item, index) => (
+                        <li
+                            key={index}
+                            onClick={() => handleSelect(item)}
+                            className="px-4 py-2 hover:bg-blue-100 cursor-pointer"
+                        >
+                            {item.food_name}
+                        </li>
+                        ))}
+                    </ul>
+                )}
 
                 {selected && (
                     <>
