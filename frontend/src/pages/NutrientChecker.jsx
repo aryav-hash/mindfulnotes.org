@@ -3,6 +3,7 @@ import Papa from 'papaparse'
 import { useEffect, useState } from 'react'
 import {Chart as ChartJS,BarElement,CategoryScale,LinearScale,Tooltip,Legend,} from "chart.js";
 import {Bar} from 'react-chartjs-2';
+import {Link} from 'react-router-dom';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
@@ -38,7 +39,7 @@ function NutrientChecker() {
             <div className="font-sans text-gray-800 relative">
                 <header className="fixed bg-white py-2 w-full">
                     <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-                    <h3 className="text-xl md:text-2xl font-bold text-green-600">Mindfulnotes</h3>
+                    <Link to="/" className="text-xl md:text-2xl font-bold text-green-600">Mindfulnotes</Link>
                     <nav className="space-x-6 hidden md:flex">
                         <></>
                     </nav>
@@ -48,12 +49,14 @@ function NutrientChecker() {
                     </div>
                 </header>
 
-                <center><section className="flex flex-col justify-around items-center text-center py-16 max-w-6xl bg-yellow-50">
-                            <img src={logo} alt="Mindful Notes logo" className="h-20 w-auto" />
-                            <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
-                                Pay full attention to your food. We help you check and compare the nutrition in what you eat — with Nutrient Checker
-                            </p>
-                        </section></center>
+                <center>
+                    <section className="flex flex-col justify-around items-center text-center py-16 max-w-6xl bg-yellow-50">
+                        <img src={logo} alt="Mindful Notes logo" className="h-20 w-auto" />
+                        <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
+                            Pay full attention to your food. We help you check and compare the nutrition in what you eat — with Nutrient Checker
+                        </p>
+                    </section>
+                </center>
 
                 <div className="flex flex-col md:flex-row gap-6 max-w-6xl mx-auto mt-10 mb-10 min-h-[200px] transition-all duration-300">
                     {/* Left: Search & Selection */}

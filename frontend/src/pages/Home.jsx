@@ -1,7 +1,6 @@
 import logo from "../assets/logo.png"
 import { Link } from 'react-router-dom'
 
-
 function Home() {
     const cardData = [
         {
@@ -123,7 +122,7 @@ function Home() {
                 ))}
             </div>
             </section>
-            
+
             <section className="pb-16 px-6 bg-white">
             <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-8">
                 {menuData.map((item, index) => (
