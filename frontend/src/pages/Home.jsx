@@ -1,4 +1,5 @@
 import logo from "../assets/logo.png"
+import QuoteSection from "../components/QuoteSection"
 import { Link } from 'react-router-dom'
 
 function Home() {
@@ -122,6 +123,10 @@ function Home() {
                 ))}
             </div>
             </section>
+            
+            <div className="mb-16">
+                <QuoteSection />
+            </div>
 
             <section className="pb-16 px-6 bg-white">
             <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-8">
