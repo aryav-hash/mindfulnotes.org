@@ -23,15 +23,14 @@ function QuoteSection() {
 
     return (
         <section className="bg-yellow-50 px-4 py-5 text-center rounded shadow max-w-6xl mx-auto">
-        <h2 className="text-xl font-semibold mb-4 text-blue-600">Quote of the Day !</h2>
         {loading ? (
             <p className="text-gray-500">Loading...</p>
         ) : quote ? (
-            <blockquote className="italic text-lg text-gray-800 mb-2">“{quote.q}”</blockquote>
+            <blockquote className="italic text-lg text-gray-800 mb-2 font-medium">“{quote.q}”</blockquote>
         ) : (
             <p className="text-red-500">Could not load quote.</p>
         )}
-        {quote && <p className="text-gray-600">— {quote.a}</p>}
+        {quote && <p className="text-gray-600 font-medium">— {quote.a}</p>}
         </section>
     );
 
