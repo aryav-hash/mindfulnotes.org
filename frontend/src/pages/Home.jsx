@@ -1,5 +1,7 @@
 import logo from "../assets/logo.png"
 import QuoteSection from "../components/QuoteSection"
+import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 import { Link } from 'react-router-dom'
 
 function Home() {
@@ -78,18 +80,7 @@ function Home() {
     return (
         <>
             <div className="font-sans text-gray-800 relative">
-            {/* Navbar */}
-            <header className="fixed bg-white py-2 w-full">
-                <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-                <h3 className="text-xl md:text-2xl font-bold text-green-600">Mindfulnotes</h3>
-                <nav className="space-x-6 hidden md:flex">
-                    <></>
-                </nav>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
-                    Menu
-                </button>
-                </div>
-            </header>
+            <Navbar />
 
             {/* Hero Section */}
             <center><section className="flex flex-col justify-around items-center text-center py-16 max-w-6xl bg-yellow-50">
@@ -144,13 +135,7 @@ function Home() {
             </div>
             </section>
 
-           
-
-            {/* Footer */}
-            <footer className="bg-gray-800 text-white text-center py-6">
-                <p className="mb-1">Stay Connected!</p>
-                <p className="text-sm">www.mindfulnotes.org | mindnotes6@gmail.com</p>
-            </footer>
+            <Footer />
             </div>
         </>
     )
