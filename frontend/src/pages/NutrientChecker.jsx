@@ -1,5 +1,6 @@
 import logo from "../assets/logo.png"
 import Papa from 'papaparse'
+import Footer from "../components/Footer"
 import { useEffect, useState } from 'react'
 import {Chart as ChartJS,BarElement,CategoryScale,LinearScale,Tooltip,Legend,} from "chart.js";
 import {Bar} from 'react-chartjs-2';
@@ -58,8 +59,7 @@ function NutrientChecker() {
                     </section>
                 </center>
 
-                <div className="flex flex-col md:flex-row gap-6 max-w-6xl mx-auto mt-10 mb-10 min-h-[200px] transition-all duration-300">
-                    {/* Left: Search & Selection */}
+                <div className="flex flex-col md:flex-row gap-6 max-w-6xl mx-auto mt-10 mb-20 min-h-[200px] transition-all duration-300">
                     <div className="w-full md:w-1/3">
                         <input
                         type="text"
@@ -99,7 +99,6 @@ function NutrientChecker() {
                         )}
                     </div>
 
-                    {/* Right: Chart */}
                     <div className="w-full md:w-2/3 flex items-center justify-center">
                         {selected && (
                         <div className="w-full h-[400px]">
@@ -148,11 +147,7 @@ function NutrientChecker() {
                 <p className="mb-1 text-sm px-5 py-5 w-6xl text-center"><span className="font-bold">Disclaimer: </span><i>The data displayed above is indicative in nature, with values presented per 100g. The recipes may vary based on individual preferences and availability of ingredients. The data is referenced from Indian Nutrient Databank (INDB).</i></p>
             </div>
 
-            <footer className="bg-gray-800 text-white text-center py-6">
-                <p className="mb-1 text-sm"></p>
-                <p className="text-sm">www.mindfulnotes.org | mindnotes6@gmail.com</p>
-            </footer>
-
+            <Footer />
             </div>
         </>
     );
