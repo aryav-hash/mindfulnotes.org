@@ -32,19 +32,19 @@ export default function Navbar() {
 
     return (
         <>
-            <header className="top-0 sticky z-[20] bg-white py-2 w-full shadow-sm shadow-green-100 hover:shadow-green-300">
-                <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-                    <h3 className="text-xl md:text-2xl font-bold text-green-600">Mindfulnotes</h3>
+            <header className="top-0 sticky z-[20] flex-wrap bg-white py-2 w-full shadow-sm shadow-green-100 hover:shadow-green-300">
+                <div className="max-w-6xl mx-auto px-4 flex flex-wrap justify-between items-center">
+                    <h3 className="text-xl md:text-2xl basis-1/2 font-bold text-green-600">Mindfulnotes</h3>
                     <nav className="space-x-6 hidden md:flex">
                         <NavLinks />
                     </nav>
-                    <div className="md:hidden">
+                    <div className="md:hidden basis-1/2 flex justify-end">
                         <button onClick={tl}>
                             {open ? <X />: <Menu />}
                         </button>
                     </div>
                     {open && (
-                        <div>
+                        <div className="md:hidden basis-full flex flex-col items-center">
                             <NavLinks />
                         </div>
                     )}
