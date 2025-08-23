@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@theme {
+    --spacing-13: 3.25rem;
+    --spacing-14: 3.5rem;
+    --spacing-15: 3.75rem;
+    --breakpoint-smm: 500px;
+}
