@@ -8,17 +8,17 @@ export default function Navbar() {
         return (
             <>
                 <NavLink to="/" className={({ isActive }) =>
-                    isActive ? 'text-green-500 text-xl underline underline-offset-2': 'text-black hover:underline underline-offset-1'
+                    isActive ? 'text-green-500 text-md md:text-xl underline underline-offset-2': 'text-black text-sm md:text-lg hover:underline underline-offset-1'
                 }>
                     Home
                 </NavLink>
                 <NavLink to="/recordParameters" className={({ isActive }) =>
-                    isActive ? 'text-green-500 text-xl underline underline-offset-2': 'text-black hover:underline underline-offset-1'
+                    isActive ? 'text-green-500 text-md md:text-xl underline underline-offset-2': 'text-black text-sm md:text-lg hover:underline underline-offset-1'
                 }>
                     Record
                 </NavLink>
                 <NavLink to="/report" className={({ isActive }) => 
-                    isActive ? 'text-green-500 text-xl underline underline-offset-2': 'text-black hover:underline underline-offset-1'
+                    isActive ? 'text-green-500 text-md md:text-xl underline underline-offset-2': 'text-black text-sm md:text-lg hover:underline underline-offset-1'
                 }>
                     Reports
                 </NavLink>
