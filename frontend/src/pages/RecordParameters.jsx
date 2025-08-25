@@ -62,19 +62,19 @@ export default function RecordParameters() {
                             <p htmlFor="sleep" className="text-xs smm:text-md md:text-lg text-wrap font-medium mb-1 
                             max-w-3xs smm:max-w-xs md:max-w-lg">~ How would you describe your mood throughout the day ?</p>
                             <label className="flex items-center mb-1">
-                                <input type="radio" name="happy" className="mr-2 hidden peer" defaultChecked/>
+                                <input type="radio" name="mood" className="mr-2 hidden peer" defaultChecked/>
                                 <span class="before:content-['😄'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Happy</span>
                             </label>
                             <label className="flex items-center mb-1">
-                                <input type="radio" name="sad" className="mr-2 hidden peer" />
+                                <input type="radio" name="mood" className="mr-2 hidden peer" />
                                 <span class="before:content-['😢'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Sad</span>
                             </label>
                             <label className="flex items-center mb-1">
-                                <input type="radio" name="angry" className="mr-2 hidden peer" />
+                                <input type="radio" name="mood" className="mr-2 hidden peer" />
                                 <span class="before:content-['😡'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Angry</span>
                             </label>
                             <label className="flex items-center mb-1">
-                                <input type="radio" name="stress" className="mr-2 hidden peer" />
+                                <input type="radio" name="mood" className="mr-2 hidden peer" />
                                 <span class="before:content-['😥'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Stressed / Anxious</span>
                             </label>
                             <p className="py-2 text-xs smm:text-md md:text-lg text-wrap font-medium 
@@ -82,9 +82,53 @@ export default function RecordParameters() {
                             <textArea placeholder="Place your reasons here ..." name="mood-reasons" rows="2" className="p-2 text-xs smm:text-md md:text-lg border-2 rounded-lg border-blue-500 focus:outline-none focus:border-2 focus:border-green-500 h-auto w-full max-w-[230px] smm:max-w-[300px] md:max-w-lg"/>
                         </div>
                     </div>
-                    <p>c</p>
-                    <p>d</p>
-                    <p>e</p>
+                    
+                    {/* Social */}
+                    <div className="grid grid-col-1">
+                        <p className="pt-3 text-sm smm:text-md md:text-xl font-bold">3. SOCIAL LIFE</p>
+                        <div className="mt-2 ml-5 w-full">
+                            <p htmlFor="sleep" className="text-xs smm:text-md md:text-lg text-wrap font-medium mb-2 
+                            max-w-3xs smm:max-w-xs md:max-w-lg">~ Did you have any meaningful interactions with someone today ?</p>
+                            <div className="flex items-center mb-1">
+                                <input type="radio" name="social-life" defaultChecked className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600" />
+                                <label htmlFor="Yes" className="text-xs smm:text-md md:text-lg">Yes</label>
+                            </div>
+                            <div className="flex items-center">
+                                <input type="radio" name="social-life" className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600" />
+                                <label htmlFor="No" className="text-xs smm:text-md md:text-lg">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* habits */}
+                    <div className="grid grid-col-1">
+                        <p className="pt-3 text-sm smm:text-md md:text-xl font-bold">4. HABITS</p>
+                        <div className="mt-2 ml-5 w-full">
+                            <p htmlFor="sleep" className="text-xs smm:text-md md:text-lg text-wrap font-medium mb-2 
+                            max-w-3xs smm:max-w-xs md:max-w-lg">~ Tick some of the following habits which you followed today: </p>
+                            <div className="flex items-center mb-1">
+                                <input type="checkbox" name="habits" className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600" />
+                                <label htmlFor="excercise" className="text-xs smm:text-md md:text-lg">Physical Activity / Exercise</label>
+                            </div>
+                            <div className="flex items-center mb-1">
+                                <input type="checkbox" name="habits" className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600" />
+                                <label htmlFor="meals" className="text-xs smm:text-md md:text-lg">Healthy Meals</label>
+                            </div>
+                            <div className="flex items-center mb-1">
+                                <input type="checkbox" name="habits" className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600" />
+                                <label htmlFor="meditation" className="text-xs smm:text-md md:text-lg">Meditation / Relaxation</label>
+                            </div>
+                            <div className="flex items-center mb-1">
+                                <input type="checkbox" name="habits" className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600" />
+                                <label htmlFor="learning" className="text-xs smm:text-md md:text-lg">Reading / Learning / Creative activity</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* financial data */}
+                        
+
+
                     <p>f</p>
                     <p>g</p>
                     <p>h</p>
