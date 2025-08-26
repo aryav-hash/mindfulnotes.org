@@ -88,23 +88,23 @@ export default function RecordParameters() {
                             max-w-3xs smm:max-w-xs md:max-w-lg">~ How would you describe your mood throughout the day ?</p>
                             <label className="flex items-center mb-1">
                                 <input type="radio" name="mood" className="mr-2 hidden peer" defaultChecked/>
-                                <span class="before:content-['😄'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Happy</span>
+                                <span className="before:content-['😄'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Happy</span>
                             </label>
                             <label className="flex items-center mb-1">
                                 <input type="radio" name="mood" className="mr-2 hidden peer" />
-                                <span class="before:content-['😢'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Sad</span>
+                                <span className="before:content-['😢'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Sad</span>
                             </label>
                             <label className="flex items-center mb-1">
                                 <input type="radio" name="mood" className="mr-2 hidden peer" />
-                                <span class="before:content-['😡'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Angry</span>
+                                <span className="before:content-['😡'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Angry</span>
                             </label>
                             <label className="flex items-center mb-1">
                                 <input type="radio" name="mood" className="mr-2 hidden peer" />
-                                <span class="before:content-['😥'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Stressed / Anxious</span>
+                                <span className="before:content-['😥'] peer-checked:before:content-['✅'] text-xs smm:text-md md:text-lg before:mr-1">Stressed / Anxious</span>
                             </label>
                             <p className="py-2 text-xs smm:text-md md:text-lg text-wrap font-medium 
                             max-w-3xs smm:max-w-xs md:max-w-lg">~ Reasons:</p>
-                            <textArea placeholder="Place your reasons here ..." name="mood-reasons" rows="2" className="p-2 text-xs smm:text-md md:text-lg border-2 rounded-lg border-blue-500 focus:outline-none focus:border-2 focus:border-green-500 h-auto w-full max-w-[230px] smm:max-w-[300px] md:max-w-lg"/>
+                            <textarea placeholder="Place your reasons here ..." name="mood-reasons" rows="2" className="p-2 text-xs smm:text-md md:text-lg border-2 rounded-lg border-blue-500 focus:outline-none focus:border-2 focus:border-green-500 h-auto w-full max-w-[230px] smm:max-w-[300px] md:max-w-lg"/>
                         </div>
                     </div>
                     
@@ -163,7 +163,7 @@ export default function RecordParameters() {
                                 <label htmlFor="yes" className="text-xs smm:text-md md:text-lg">Yes</label>
                             </div>
                             <div className="flex items-center">
-                                <input type="radio" value="no" name="response" defaultChecked checked={choice === 'no'} 
+                                <input type="radio" value="no" name="response" checked={choice === 'no'} 
                                 onChange={(e) => {setChoice(e.target.value)}}
                                 className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600" />
                                 <label htmlFor="no" className="text-xs smm:text-md md:text-lg">No</label>

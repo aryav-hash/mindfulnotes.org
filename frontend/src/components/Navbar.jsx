@@ -39,9 +39,9 @@ export default function Navbar() {
                         <NavLinks />
                     </nav>
                     <div className="md:hidden basis-1/2 flex justify-end">
-                        <button onClick={tl}>
+                        <span onClick={tl}>
                             {open ? <X />: <Menu />}
-                        </button>
+                        </span>
                     </div>
                     {open && (
                         <div className="md:hidden basis-full flex flex-col items-center">
