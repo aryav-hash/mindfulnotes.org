@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # --- CHECKOUT CODE ---
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # --- SSH SETUP ---
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
@@ -20,13 +22,14 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
-      # --- FRONTEND BUILD & DEPLOY ---
+      # --- FRONTEND BUILD ---
       - name: Install dependencies and build frontend
         run: |
           cd frontend
           npm install
           npm run build
 
+      # --- FRONTEND DEPLOY ---
       - name: Deploy frontend to EC2
         run: |
           scp -r frontend/dist/* ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/html/
@@ -36,14 +39,27 @@ jobs:
         run: |
           rsync -avz --exclude 'venv/' backend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/flaskapp/
 
-      # --- INSTALL BACKEND DEPENDENCIES + RESTART SERVICES ---
+      # --- BACKEND SETUP + SERVICE RESTART ---
       - name: Restart services on EC2
         run: |
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
-            cd /var/www/flaskapp &&
-            source venv/bin/activate &&
-            pip install -r requirements.txt &&
-            sudo systemctl daemon-reload &&
-            sudo systemctl restart flaskapp &&
+            set -e
+            cd /var/www/flaskapp || exit 1
+
+            # Ensure virtualenv exists
+            if [ ! -d venv ]; then
+              echo 'Creating virtual environment...'
+              python3 -m venv venv
+            fi
+
+            # Activate venv and install dependencies
+            source venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+
+            # Restart services
+            echo 'Restarting services...'
+            sudo systemctl daemon-reload
+            sudo systemctl restart flaskapp || echo 'flaskapp.service not found'
             sudo systemctl restart apache2
           "
