@@ -1,24 +1,30 @@
 import {useState, useEffect} from 'react';
 
-function QuoteSection() {
+export default function QuoteSection() {
     const [quote, setQuote] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-    fetch(
-        'https://api.allorigins.win/get?url=' +
-        encodeURIComponent('https://zenquotes.io/api/random')
-    )
-        .then(res => res.json())
-        .then(data => {
-        const parsed = JSON.parse(data.contents);
-        setQuote(parsed[0]);
-        setLoading(false);
-        })
-        .catch((err) => {
-        console.error('Failed to fetch quote:', err);
-        setLoading(false);
-        });
+        const api = "http://localhost:5000/api/quote";
+        async function getApi(url) {
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                if (data && data.length > 0) {
+                    setQuote({ q: data[0].q, a: data[0].a });
+                }
+                else {
+                    setQuote(null);
+                }
+            }
+            catch (error) {
+                setQuote(null);
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+        getApi(api);
     }, []);
 
     return (
@@ -35,5 +41,3 @@ function QuoteSection() {
     );
 
 }
-
-export default QuoteSection;
