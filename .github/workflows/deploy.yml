@@ -34,7 +34,7 @@ jobs:
       # --- BACKEND DEPLOY ---
       - name: Deploy backend to EC2
         run: |
-          scp -r backend/* ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/flaskapp/
+          rsync -avz --exclude 'venv/' backend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/flaskapp/
 
       # --- INSTALL BACKEND DEPENDENCIES + RESTART SERVICES ---
       - name: Restart services on EC2
