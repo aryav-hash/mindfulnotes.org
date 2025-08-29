@@ -20,16 +20,30 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
+      # --- FRONTEND BUILD & DEPLOY ---
       - name: Install dependencies and build frontend
         run: |
           cd frontend
           npm install
           npm run build
 
-      - name: Deploy to EC2 via SCP
+      - name: Deploy frontend to EC2
         run: |
           scp -r frontend/dist/* ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/html/
 
-      - name: Restart Apache on EC2
+      # --- BACKEND DEPLOY ---
+      - name: Deploy backend to EC2
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "sudo systemctl restart apache2"
+          scp -r backend/* ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/flaskapp/
+
+      # --- INSTALL BACKEND DEPENDENCIES + RESTART SERVICES ---
+      - name: Restart services on EC2
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
+            cd /var/www/flaskapp &&
+            source venv/bin/activate &&
+            pip install -r requirements.txt &&
+            sudo systemctl daemon-reload &&
+            sudo systemctl restart flaskapp &&
+            sudo systemctl restart apache2
+          "
