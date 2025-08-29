@@ -29,19 +29,13 @@ jobs:
 
       - name: Prepare build directory on EC2
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
-            sudo mkdir -p /var/www/build/ &&
-            sudo chown -R ${{ secrets.EC2_USER }}:www-data /var/www/build/
-          "
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "sudo mkdir -p /var/www/build/ && sudo chown -R ${{ secrets.EC2_USER }}:www-data /var/www/build/"
 
       - name: Clean remote build directory
-        run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
-            sudo rm -rf /var/www/build/*
+        run: ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "sudo rm -rf /var/www/build/*"
 
       - name: Deploy frontend to EC2
-        run: |
-          scp -r frontend/dist/* ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/build/
+        run: scp -r frontend/dist/* ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/build/
 
       # --- BACKEND DEPLOY ---
       - name: Deploy backend to EC2
@@ -56,6 +50,6 @@ jobs:
             source venv/bin/activate &&
             pip install -r requirements.txt &&
             sudo systemctl daemon-reload &&
-            sudo systemctl restart flaskapp && # Assuming your backend service is named 'flaskapp'
-            sudo systemctl restart nginx # 👈 Restart Nginx, not Apache
+            sudo systemctl restart flaskapp &&
+            sudo systemctl restart nginx
           "
