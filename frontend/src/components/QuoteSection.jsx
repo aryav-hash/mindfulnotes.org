@@ -34,7 +34,7 @@ export default function QuoteSection() {
         ) : quote ? (
             <blockquote className="italic text-lg text-gray-800 mb-2 font-medium">“{quote.q}”</blockquote>
         ) : (
-            <p className="text-red-500">Could not load quote.</p>
+            <p className="text-red-500"> Could not load quote.</p>
         )}
         {quote && <p className="text-gray-600 font-medium">— {quote.a}</p>}
         </section>
