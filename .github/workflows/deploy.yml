@@ -33,6 +33,12 @@ jobs:
             sudo mkdir -p /var/www/build/ &&
             sudo chown -R ${{ secrets.EC2_USER }}:www-data /var/www/build/
           "
+
+      - name: Clean remote build directory
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
+            sudo rm -rf /var/www/build/*
+
       - name: Deploy frontend to EC2
         run: |
           scp -r frontend/dist/* ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/build/
