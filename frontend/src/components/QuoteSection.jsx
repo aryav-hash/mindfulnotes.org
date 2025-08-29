@@ -5,7 +5,7 @@ export default function QuoteSection() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const api = "http://localhost:5000/api/quote";
+        const api = "/api/quote";
         async function getApi(url) {
             try {
                 const res = await fetch(url);
