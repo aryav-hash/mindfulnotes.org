@@ -56,6 +56,19 @@ export default function RecordParameters() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (choice === '') {
+            alert("Please fill the finance section!");
+            return ;
+        }
+        if (moodReasons.trim() === '') {
+            alert("Please provide reasons for your mood!");
+            return ;
+        }
+        if (choice === 'yes' && items.length === 0) {
+            alert("Please provide the details of your impulsive purchases!");
+            return ;
+        }
+        
         const formData = {
             sleepHours: sleep,
             sleepFeeling: sleepFeeling,
@@ -67,6 +80,8 @@ export default function RecordParameters() {
             purchaseItems: items,
             submittedAt: new Date().toISOString()
         };
+        
+        console.log(formData);
 
         resetForm();
     };
@@ -82,8 +97,6 @@ export default function RecordParameters() {
         setItems([]);
         setName('');
         setPrice('');
-        setUserName('');
-        setEmail('');
     };
 
     return (
