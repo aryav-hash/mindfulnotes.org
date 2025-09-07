@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useState } from 'react';
 import '../index.css';
+import { submitRecord } from "../services/formApi";
 
 export default function RecordParameters() {
     const [sleepFeeling, setSleepFeeling] = useState('refreshed');
@@ -13,6 +14,9 @@ export default function RecordParameters() {
     const [items, setItems] = useState([]);
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitMessage, setSubmitMessage] = useState('');
+    const [submitError, setSubmitError] = useState('');
 
     const addItem = (e) => {
         e.preventDefault();
@@ -54,8 +58,11 @@ export default function RecordParameters() {
         );
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
+        setSubmitMessage('');
+        setSubmitError('');
+
         if (choice === '') {
             alert("Please fill the finance section!");
             return ;
@@ -68,7 +75,7 @@ export default function RecordParameters() {
             alert("Please provide the details of your impulsive purchases!");
             return ;
         }
-        
+
         const formData = {
             sleepHours: sleep,
             sleepFeeling: sleepFeeling,
@@ -80,10 +87,22 @@ export default function RecordParameters() {
             purchaseItems: items,
             submittedAt: new Date().toISOString()
         };
-        
-        console.log(formData);
 
-        resetForm();
+        setIsSubmitting(true);
+
+        try {
+            const result = await submitRecord(formData);
+            setSubmitMessage('Record submitted !');
+            console.log('Submission successful: ', result);
+            resetForm();
+        }
+        catch (error) {
+            setSubmitError('Submission failed. Please try again.');
+            console.error('Submission error:', error);
+        }
+        finally {
+            setIsSubmitting(false);
+        }
     };
     
     const resetForm = () => {
@@ -308,10 +327,17 @@ export default function RecordParameters() {
                         <button
                             type="submit"
                             onClick={handleSubmit}
-                            className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-sm smm:text-md md:text-lg"
+                            disabled={isSubmitting}
+                            className={`${isSubmitting ? 'bg-gray-400' : 'bg-green-500 hover:bg-green-600'} text-white font-bold py-3 px-8 rounded-lg text-sm smm:text-md md:text-lg`}
                         >
-                            Submit
+                            {isSubmitting ? 'Submitting...' : 'Submit'}
                         </button>
+                        {submitMessage && (
+                            <p className="text-green-600 text-center mt-2 text-sm">{submitMessage}</p>
+                        )}
+                        {submitError && (
+                            <p className="text-red-600 text-center mt-2 text-sm">{submitError}</p>
+                        )}
                     </div>
                 </form>
             </section>
