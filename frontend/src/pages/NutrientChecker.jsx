@@ -5,7 +5,6 @@ import Navbar from '../components/Navbar';
 import { useEffect, useState } from 'react'
 import {Chart as ChartJS,BarElement,CategoryScale,LinearScale,Tooltip,Legend,} from "chart.js";
 import {Bar} from 'react-chartjs-2';
-import {Link} from 'react-router-dom';
 
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
@@ -14,15 +13,28 @@ function NutrientChecker() {
     const [options, setOptions] = useState([])
     const [search, setSearch] = useState('')
     const [selected, setSelected] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
+        setLoading(true)
         Papa.parse('/fooditemlistgm.csv', {
         download: true,
         header: true,
         skipEmptyLines: true,
         complete: (result) => {
-            setOptions(result.data)
+            if (result.data && result.data.length > 0) {
+                setOptions(result.data)
+                setLoading(false)
+            } else {
+                setError('No data found in CSV file')
+                setLoading(false)
+            }
         },
+        error: (err) => {
+            setError('Failed to load food data: ' + err.message)
+            setLoading(false)
+        }
         })
     }, [])
 
@@ -51,87 +63,98 @@ function NutrientChecker() {
                     </section>
                 </center>
 
-                <div className="flex flex-col md:flex-row gap-6 max-w-6xl mx-auto mt-10 mb-20 min-h-[200px] transition-all duration-300">
-                    <div className="w-full md:w-1/3">
+                <div className="flex flex-col w-full mx-auto mt-10 mb-20 min-h-[200px] transition-all duration-300">
+                    <div className="w-full flex flex-col items-center mb-10">
                         <input
                         type="text"
-                        placeholder="Search..."
+                        placeholder="Search for food items..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="w-full px-4 py-2 border rounded shadow"
+                        className="max-w-xs px-5 py-1 border rounded shadow focus:outline-none focus:ring-2 focus:ring-green-500"
+                        disabled={loading}
                         />
 
+                        {loading && <p className="mt-2 text-gray-500">Loading food data...</p>}
+                        {error && <p className="mt-2 text-red-500">{error}</p>}
+
                         {search && filtered.length > 0 && (
-                        <ul className="border rounded shadow mt-2 max-h-48 overflow-y-auto">
-                            {filtered.map((item, index) => (
-                            <li
-                                key={index}
-                                onClick={() => handleSelect(item)}
-                                className="px-4 py-2 hover:bg-blue-100 cursor-pointer"
-                            >
-                                {item.food_name}
-                            </li>
-                            ))}
-                        </ul>
+                            <ul className="border rounded shadow mt-2 max-h-48 overflow-y-auto w-full max-w-md">
+                                {filtered.map((item) => (
+                                <li
+                                    key={item.food_name || item.id}
+                                    onClick={() => handleSelect(item)}
+                                    className="px-4 py-2 hover:bg-blue-100 cursor-pointer"
+                                >
+                                    {item.food_name}
+                                </li>
+                                ))}
+                            </ul>
                         )}
 
-                        {selected && (
-                        <div className="mt-4 bg-gray-100 p-4 rounded">
-                            <h3 className="text-lg font-semibold text-green-700 mb-2">
-                            Selected: {selected.food_name}
-                            </h3>
-                            <ul className="text-gray-800 text-sm space-y-1">
-                            {Object.entries(selected).map(([key, value]) => (
-                                <li key={key}>
-                                <strong>{key}:</strong> {value}
-                                </li>
-                            ))}
-                            </ul>
-                        </div>
+                        {search && filtered.length === 0 && !loading && (
+                            <p className="mt-2 text-gray-500">"No results found for "{search}"</p>
                         )}
                     </div>
-
-                    <div className="w-full md:w-2/3 flex items-center justify-center">
-                        {selected && (
-                        <div className="w-full h-[400px]">
-                            <h4 className="text-md font-semibold mb-2">Nutrient Chart</h4>
-                            <Bar
-                            data={{
-                                labels: Object.keys(selected).filter((key) =>
-                                ['energy_kcal', 'carb_g', 'protein_g', 'fat_g', 'freesugar_g', 'fibre_g'].includes(key.toLowerCase())
-                                ),
-                                datasets: [
-                                {
-                                    label: `${selected.food_name} (per 100g)`,
-                                    backgroundColor: [
-                                    '#4285F4',
-                                    '#34A853',
-                                    '#FBBC04',
-                                    '#EA4335',
-                                    '#E37400',
-                                    '#202124',
-                                    ],
-                                    data: Object.entries(selected)
-                                    .filter(([key]) =>
-                                        ['energy_kcal', 'carb_g', 'protein_g', 'fat_g', 'freesugar_g', 'fibre_g'].includes(key.toLowerCase())
-                                    )
-                                    .map(([, value]) => parseFloat(value)),
-                                },
-                                ],
-                            }}
-                            options={{
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                scales: {
-                                y: {
-                                    beginAtZero: true,
-                                },
-                                },
-                            }}
-                            height={350}
-                            />
+                    
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-20 max-w-6xl mx-auto px-4">
+                        <div className="w-full md:w-1/3 flex items-center justify-center">
+                            {selected && (
+                            <div className="mt-4 bg-gray-100 p-4 rounded w-full">
+                                <h3 className="text-lg font-semibold text-green-700 mb-2">
+                                Selected: {selected.food_name}
+                                </h3>
+                                <ul className="text-gray-800 text-sm space-y-1">
+                                {Object.entries(selected).map(([key, value]) => (
+                                    <li key={key}>
+                                    <strong className="capitalize">{key.replace(/_/g, ' ')}:</strong> {value}
+                                    </li>
+                                ))}
+                                </ul>
+                            </div>
+                            )}
                         </div>
-                        )}
+
+                        <div className="w-full md:w-2/3 flex items-center justify-center">
+                            {selected && (
+                            <div className="w-full h-[400px]">
+                                <h4 className="text-md font-semibold mb-2">Nutrient Chart</h4>
+                                <Bar
+                                data={{
+                                    labels: Object.keys(selected).filter((key) =>
+                                    ['energy_kcal', 'carb_g', 'protein_g', 'fat_g', 'freesugar_g', 'fibre_g'].includes(key.toLowerCase())
+                                    ).map(label => label.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())),
+                                    datasets: [
+                                    {
+                                        label: `${selected.food_name} (per 100g)`,
+                                        backgroundColor: [
+                                        '#4285F4',
+                                        '#34A853',
+                                        '#FBBC04',
+                                        '#EA4335',
+                                        '#E37400',
+                                        '#202124',
+                                        ],
+                                        data: Object.entries(selected)
+                                        .filter(([key]) =>
+                                            ['energy_kcal', 'carb_g', 'protein_g', 'fat_g', 'freesugar_g', 'fibre_g'].includes(key.toLowerCase())
+                                        )
+                                        .map(([, value]) => parseFloat(value) || 0),
+                                    },
+                                    ],
+                                }}
+                                options={{
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                    },
+                                    },
+                                }}
+                                />
+                            </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             
