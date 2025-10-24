@@ -1,0 +1,19 @@
+.env
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+dist/
+build/
+out/
+
+logs/
+*.log
+
+# Backend and python files.
+.venv/
+__pycache__/
+.vscode/
