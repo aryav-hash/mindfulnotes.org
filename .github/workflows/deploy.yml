@@ -1,0 +1,55 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      # --- FRONTEND BUILD & DEPLOY ---
+      - name: Install dependencies and build frontend
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      - name: Prepare build directory on EC2
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "sudo mkdir -p /var/www/build/ && sudo chown -R ${{ secrets.EC2_USER }}:www-data /var/www/build/"
+
+      - name: Clean remote build directory
+        run: ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "sudo rm -rf /var/www/build/*"
+
+      - name: Deploy frontend to EC2
+        run: scp -r frontend/dist/* ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/build/
+
+      # --- BACKEND DEPLOY ---
+      - name: Deploy backend to EC2
+        run: |
+          rsync -avz --exclude 'venv/' backend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/flaskapp/
+
+      # --- INSTALL BACKEND DEPENDENCIES + RESTART SERVICES ---
+      - name: Restart services on EC2
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
+            cd /var/www/flaskapp &&
+            source venv/bin/activate &&
+            pip install -r requirements.txt &&
+            sudo systemctl daemon-reload &&
+            sudo systemctl restart flaskapp &&
+            sudo systemctl restart nginx
+          "

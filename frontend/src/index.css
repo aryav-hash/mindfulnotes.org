@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+    --spacing-13: 3.25rem;
+    --spacing-14: 3.5rem;
+    --spacing-15: 3.75rem;
+    --breakpoint-smm: 500px;
+}
+
+/* Remove default thumb styling */
+input[type="range"]::-webkit-slider-thumb {
+    @apply appearance-none;
+    width: 12px;
+    height: 12px;
+    background: hsla(198, 71%, 46%, 0.901); /* cyan */
+    border-radius: 50%;
+    box-shadow: 0 0 10px #22ee58, 0 0 20px #22ee58;
+}
+                        
