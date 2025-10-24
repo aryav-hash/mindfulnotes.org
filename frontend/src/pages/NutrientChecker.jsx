@@ -1,10 +1,12 @@
 import logo from "../assets/logo.png"
 import Papa from 'papaparse'
 import Footer from "../components/Footer"
+import Navbar from '../components/Navbar';
 import { useEffect, useState } from 'react'
 import {Chart as ChartJS,BarElement,CategoryScale,LinearScale,Tooltip,Legend,} from "chart.js";
 import {Bar} from 'react-chartjs-2';
 import {Link} from 'react-router-dom';
+
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
@@ -38,20 +40,10 @@ function NutrientChecker() {
     return (
         <>
             <div className="font-sans text-gray-800 relative">
-                <header className="fixed bg-white py-2 w-full">
-                    <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-                    <Link to="/" className="text-xl md:text-2xl font-bold text-green-600">Mindfulnotes</Link>
-                    <nav className="space-x-6 hidden md:flex">
-                        <></>
-                    </nav>
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
-                        Menu
-                    </button>
-                    </div>
-                </header>
+                <Navbar />
 
                 <center>
-                    <section className="flex flex-col justify-around items-center text-center py-16 max-w-6xl bg-yellow-50">
+                    <section className="mt-10 flex flex-col justify-around items-center text-center py-16 max-w-6xl bg-yellow-50">
                         <img src={logo} alt="Mindful Notes logo" className="h-20 w-auto" />
                         <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-6">
                             Pay full attention to your food. We help you check and compare the nutrition in what you eat — with Nutrient Checker
