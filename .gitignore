@@ -1,4 +1,9 @@
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 node_modules/
 npm-debug.log*
 yarn-debug.log*
@@ -13,7 +18,28 @@ out/
 logs/
 *.log
 
-# Backend and python files.
+# Backend and python files
 .venv/
+venv/
+env/
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# IDE/Editor files
 .vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Cache directories
+.cache/
+.pytest_cache/
+coverage/
+.nyc_output
